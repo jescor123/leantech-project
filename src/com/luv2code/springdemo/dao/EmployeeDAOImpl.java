@@ -17,14 +17,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Employee> getEmployees() {
+	public List<Employee> getEmployees(String search) {
 		
-		        Session currentSession = sessionFactory.getCurrentSession();
-				String queryString = "from Employee order by salary desc";
-				Query<Employee> theQuery = 
-						currentSession.createQuery(queryString, Employee.class);
-				List<Employee> employees = theQuery.getResultList();
-				return employees;
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		if(search == null) {	
+			
+			String queryString = "from Employee order by salary desc";
+			Query<Employee> theQuery = 
+					currentSession.createQuery(queryString, Employee.class);
+			List<Employee> employees = theQuery.getResultList();
+			return employees;
+			
+		} else {
+			
+			String queryString = "from Employee where lower(name) like :theSearch order by salary desc";
+			Query<Employee> theQuery = 
+					currentSession.createQuery(queryString, Employee.class);
+			theQuery.setParameter("theSearch", "%" + search.toLowerCase() + "%");
+			List<Employee> employees = theQuery.getResultList();
+			return employees;
+			
+		}
 		
 	}
 

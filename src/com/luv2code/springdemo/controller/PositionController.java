@@ -44,7 +44,7 @@ public class PositionController {
 		positions = positionService.getPositions();
 
 		for (Position p : positions){
-			employees = employeeService.getEmployees();
+			employees = employeeService.getEmployees(null);
 
 			for (Employee e : employees){
 

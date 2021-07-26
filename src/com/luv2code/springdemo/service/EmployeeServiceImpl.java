@@ -18,9 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	@Transactional
-	public List<Employee> getEmployees() {
+	public List<Employee> getEmployees(String search) {
 		
-		return employeeDAO.getEmployees();
+		return employeeDAO.getEmployees(search);
 		
 	}
 

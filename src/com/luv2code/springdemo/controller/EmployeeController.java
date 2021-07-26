@@ -28,11 +28,11 @@ public class EmployeeController {
 	@Autowired
 	private PersonService personService;
 	
-	// add mapping for get all employees
-	@GetMapping(value= "/list", produces= "application/vnd.jcg.api.v1+json")
-	public List<Empleado> getEmployess() {
+	// add mapping for get all employees by name
+	@GetMapping(value= "/list/{name}", produces= "application/vnd.jcg.api.v1+json")
+	public List<Empleado> getEmployessByName(@PathVariable String name) {
 		
-		List<Employee> employees = employeeService.getEmployees();
+		List<Employee> employees = employeeService.getEmployees(name);
 		List<Empleado> empleados = new ArrayList<>();
 		
 		for (Employee e : employees) {
@@ -46,8 +46,29 @@ public class EmployeeController {
 		return empleados;		
 
 	}	
-		
 	
+	
+	// add mapping for get all employees
+	@GetMapping(value= "/list", produces= "application/vnd.jcg.api.v1+json")
+	public List<Empleado> getEmployess() {
+
+		List<Employee> employees = employeeService.getEmployees(null);
+		List<Empleado> empleados = new ArrayList<>();
+
+		for (Employee e : employees) {
+
+			Person person = personService.getPerson(e.getPerson());
+			Empleado empleado = new Empleado(e.getId(), person, e.getPosition(), e.getSalary());
+			empleados.add(empleado);
+
+		}
+
+		return empleados;		
+
+	}	
+	
+	
+
 	// add mapping for SAVE OR UPDATE employees
 	@GetMapping("/saveEmployee/{person}/{position}/{salary}")
 	public void saveEmployee(@PathVariable int person, @PathVariable int position, @PathVariable long salary) {

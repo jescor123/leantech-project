@@ -25,7 +25,10 @@ public class Employee {
 	@Column(name="salary")
 	private long salary;
 	
-	
+	@Column(name="name")
+	private String name;	
+		
+
 	public Employee() {
 		
 	}
@@ -74,18 +77,28 @@ public class Employee {
 	}
 
 
-
 	public void setSalary(long salary) {
 		this.salary = salary;
 	}
 
 	
+	public String getName() {
+		return name;
+	}
+
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	
 	
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", person=" + person + ", position=" + position + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", person=" + person + ", position=" + position + ", salary=" + salary + ", name="
+				+ name + "]";
 	}
+	
 
 	
 
