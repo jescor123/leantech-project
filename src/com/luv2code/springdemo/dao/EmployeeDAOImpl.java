@@ -60,5 +60,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		
 	}
 
+	@Override
+	public List<Employee> getEmployeesByPosition(int position) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		String queryString = "from Employee where position=:PositionId order by salary desc";
+		Query<Employee> theQuery = 
+				currentSession.createQuery(queryString, Employee.class);
+		theQuery.setParameter("PositionId", position);
+		List<Employee> employees = theQuery.getResultList();
+		return employees;
+		
+	}
+
 	
 }

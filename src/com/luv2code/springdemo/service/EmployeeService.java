@@ -8,6 +8,8 @@ public interface EmployeeService {
 
 	public List<Employee> getEmployees(String search);
 	
+	public List<Employee> getEmployeesByPosition(int position);
+	
 	public void saveEmployee(Employee employee);
 	
 	public void deleteEmployee(int id);

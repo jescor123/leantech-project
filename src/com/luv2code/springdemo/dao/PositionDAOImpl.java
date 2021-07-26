@@ -20,18 +20,12 @@ public class PositionDAOImpl implements PositionDAO {
 	@Override
 	public List<Position> getPositions() {
 		
-		        // get the current hibernate session
-				Session currentSession = sessionFactory.getCurrentSession();
-				
-				// create a query  
+		        Session currentSession = sessionFactory.getCurrentSession();
 				String queryString = "from Position";
 				Query<Position> theQuery = 
 						currentSession.createQuery(queryString, Position.class);
 				
-				// execute query and get result list
 				List<Position> customers = theQuery.getResultList();
-						
-				// return the results		
 				return customers;
 		
 	}

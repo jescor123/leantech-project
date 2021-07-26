@@ -34,31 +34,34 @@ public class PositionController {
 	
 		
 	@GetMapping(value= "/list", produces= "application/vnd.jcg.api.v1+json")
-	List<Cargo>  showListPositionsWithEmployyesOrderBySalary(){
+	List<Cargo> showListPositionsWithEmployeesOrderBySalary(){
 
 		List<Cargo> cargos = new ArrayList<>();
 		List<Position> positions = new ArrayList<>();
-		List<Empleado> empleados = new ArrayList<>();
 		List<Employee> employees = new ArrayList<>();
+		Cargo cargo = null;
 		
 		positions = positionService.getPositions();
 
 		for (Position p : positions){
-			employees = employeeService.getEmployees(null);
-
+			
+			List<Empleado> empleados = new ArrayList<>();
+						
+			employees = employeeService.getEmployeesByPosition(p.getId());
+			
 			for (Employee e : employees){
 
 				Person person = personService.getPerson(e.getPerson());
 				Empleado empleado = new Empleado(e.getId(), person, e.getPosition(), e.getSalary());                                         
 				empleados.add(empleado);
-
+				
 			} 
 
-			Cargo cargo = new Cargo(p.getId(), p.getName(), empleados);
-			cargos.add(cargo);                
-
-		} 
-
+			cargo = new Cargo(p.getId(), p.getName(), empleados);	
+			cargos.add(cargo);
+												
+		} 		
+		
 		return cargos;
 
 	}          

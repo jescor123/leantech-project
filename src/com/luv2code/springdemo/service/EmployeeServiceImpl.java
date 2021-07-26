@@ -39,5 +39,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDAO.deleteEmployee(id);
 		
 	}
+
+	@Override
+	@Transactional
+	public List<Employee> getEmployeesByPosition(int position) {
+		
+		return employeeDAO.getEmployeesByPosition(position);
+		
+	}
 	
 }
