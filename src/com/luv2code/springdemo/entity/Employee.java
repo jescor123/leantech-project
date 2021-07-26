@@ -28,6 +28,10 @@ public class Employee {
 	@Column(name="name")
 	private String name;	
 		
+	@Column(name="positiondesc")
+	private String positiondesc;
+
+	
 
 	public Employee() {
 		
@@ -91,14 +95,20 @@ public class Employee {
 		this.name = name;
 	}
 
+	public String getPositiondesc() {
+		return positiondesc;
+	}
+
+	public void setPositiondesc(String positiondesc) {
+		this.positiondesc = positiondesc;
+	}
 	
 	
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", person=" + person + ", position=" + position + ", salary=" + salary + ", name="
-				+ name + "]";
+				+ name + ", positiondesc=" + positiondesc + "]";
 	}
-	
 
 	
 

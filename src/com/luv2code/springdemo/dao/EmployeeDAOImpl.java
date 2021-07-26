@@ -31,7 +31,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			
 		} else {
 			
-			String queryString = "from Employee where lower(name) like :theSearch order by salary desc";
+			String queryString = "from Employee where lower(name) like :theSearch or lower(positiondesc) like :theSearch order by salary desc";
 			Query<Employee> theQuery = 
 					currentSession.createQuery(queryString, Employee.class);
 			theQuery.setParameter("theSearch", "%" + search.toLowerCase() + "%");

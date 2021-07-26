@@ -29,10 +29,10 @@ public class EmployeeController {
 	private PersonService personService;
 	
 	// add mapping for get all employees by name
-	@GetMapping(value= "/list/{name}", produces= "application/vnd.jcg.api.v1+json")
-	public List<Empleado> getEmployessByName(@PathVariable String name) {
+	@GetMapping(value= "/list/{search}", produces= "application/vnd.jcg.api.v1+json")
+	public List<Empleado> getEmployessByName(@PathVariable String search) {
 		
-		List<Employee> employees = employeeService.getEmployees(name);
+		List<Employee> employees = employeeService.getEmployees(search);
 		List<Empleado> empleados = new ArrayList<>();
 		
 		for (Employee e : employees) {
